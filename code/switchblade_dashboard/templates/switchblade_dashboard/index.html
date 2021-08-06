@@ -1,0 +1,56 @@
+{% extends "switchblade_dashboard/base.html" %}
+{% load dashboard_tag %}
+{% load static %}
+
+
+{% block content_main %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet"/>
+
+{%if user.roles == 'Aluno' or user.is_admin%}
+
+
+<div class="box">
+    <div class="box-body">
+        <h3>Bem vindo {{user.fisrt_name}} {{user.last_name}}!</h3>
+
+        <h4>Atualmente você posui {{n}} atividades complementares cadastradas, totalizando {{horas}} horas convertidas!</h4>
+    </div>
+</div>
+
+{%endif%}
+{%if user.roles == 'Secretaria' or user.is_admin%}
+
+    <div class="box">
+        <div class="box-body">
+            <h3>Bem vindo {{user.fisrt_name}} {{user.last_name}}!</h3>
+
+            <h2>AAAAAAAAAAA</h2>
+        </div>
+    </div>
+
+{%endif%}
+
+{% endblock content_main %}
+
+{% block title %}
+    {{ form_data.PageTitle }}
+{% endblock %}
+
+{% block content_title %}
+    {{ form_data.PageTitle }}
+{% endblock %}
+
+{% block extraJS %}
+    <script src="{% static 'registros/js/form.js' %}"></script>
+
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+       <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+       <script src="{% static 'js/app.js' %}"></script>
+{% endblock extraJS %}

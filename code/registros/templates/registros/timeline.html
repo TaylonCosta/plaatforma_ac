@@ -1,0 +1,84 @@
+{% extends "switchblade_dashboard/base.html" %}
+{% load dashboard_tag %}
+{% load static %}
+
+
+{% block content_main %}
+
+<link href="{% static 'registros/css/timeline.css' %}" rel="stylesheet">
+
+<div class="timeline">
+  {% if sub.status <= 1 %}
+  <div class="container left">
+    <div class="date">15 Dec</div>
+    <i class="icon fa fa-home"></i>
+    <div class="content">
+      <h2>Submetido</h2>
+      <p>
+        Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
+      </p>
+    </div>
+  </div>
+  {%endif%}
+    {% if sub.status == 2 %}
+  <div class="container right">
+    <div class="date">22 Oct</div>
+    <i class="icon fa fa-gift"></i>
+    <div class="content">
+      <h2>Em Analise</h2>
+      <p>
+        Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
+      </p>
+    </div>
+  </div>
+  {%endif%}
+  {% if sub.status == 3 %}
+  <div class="container right">
+    <div class="date">10 Jul</div>
+    <i class="icon fa fa-user"></i>
+    <div class="content">
+      <h2>Lorem ipsum dolor sit amet</h2>
+      <p>
+        Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
+      </p>
+    </div>
+  </div>
+  {%endif%}
+  {% if sub.status == 4 %}
+  <div class="container right">
+    <div class="date">18 May</div>
+    <i class="icon fa fa-running"></i>
+    <div class="content">
+      <h2>Lorem ipsum dolor sit amet</h2>
+      <p>
+        Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
+      </p>
+    </div>
+  </div>
+  {%endif%}
+</div>
+
+
+{% endblock content_main %}
+
+{% block title %}
+    {{ form_data.PageTitle }}
+{% endblock %}
+
+{% block content_title %}
+    {{ form_data.PageTitle }}
+{% endblock %}
+
+{% block extraJS %}
+    <script src="{% static 'registros/js/form.js' %}"></script>
+
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+       <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+       <script src="{% static 'js/app.js' %}"></script>
+{% endblock extraJS %}
