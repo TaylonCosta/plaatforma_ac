@@ -1,6 +1,6 @@
 from dal import autocomplete
 
-from registros.models import Categoria, Atividade, Certificado, NivelParticipacao
+from registros.models import Categoria, Atividade, Certificado, NivelParticipacao, Aluno
 
 
 class CategoriaAutocomplete(autocomplete.Select2QuerySetView):
@@ -40,4 +40,13 @@ class CertificadoAutocomplete(autocomplete.Select2QuerySetView):
 
         if self.q:
             qs = qs.filter(titulo__icontains=self.q)
+        return qs
+
+class AlunoAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+
+        qs = Aluno.objects.filter()
+
+        if self.q:
+            qs = qs.filter(user__first_name__icontains=self.q)
         return qs

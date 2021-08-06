@@ -31,6 +31,29 @@ from django.contrib.gis import measure
 
 import datetime as dt
 
+class Aluno(DashboardBaseModel):
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    cpf = models.CharField(max_length=11)
+    matricula = models.CharField(max_length=11)
+
+    def __str__(self):
+        """Unicode representation of Pais."""
+        return self.user.first_name
+
+    class Meta:
+        verbose_name = _("Aluno")
+        verbose_name_plural = _("Alunos")
+
+    def get_delete_url(self):
+        return reverse('aluno-delete', kwargs={'pk': self.pk})
+
+    def get_update_url(self):
+        return reverse('aluno-update', kwargs={'pk': self.pk})
+
+    def get_absolute_url(self):
+        return reverse('aluno-detail', kwargs={'pk': self.pk})
+
 
 
 class Categoria(DashboardBaseModel):
@@ -104,13 +127,15 @@ class NivelParticipacao(DashboardBaseModel):
     #     return reverse('certificado-detail', kwargs={'pk': self.pk})
 
 
-class   Certificado(DashboardBaseModel):
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+class Certificado(DashboardBaseModel):
+    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE, blank=True, null=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, blank=False, null=False)
     atividade = models.ForeignKey(Atividade, on_delete=models.CASCADE, blank=False, null=False)
     nivel_participacao = models.ForeignKey(NivelParticipacao, on_delete=models.CASCADE, blank=False, null=False)
     titulo = models.CharField(max_length=80, blank=False, null=False)
     descricao = models.TextField(max_length=250, blank=True, null=True)
+    justificativa = models.TextField(max_length=250, blank=True, null=True)
+    docfile = models.FileField(upload_to='docs', blank=True, null=True)
     total_de_horas = models.IntegerField (blank=False, null=False)
     horas_convertidas = models.FloatField(blank=True, null=True)
 
@@ -153,7 +178,7 @@ class Submicao(DashboardBaseModel):
     )
 
     certificados = models.ManyToManyField(Certificado, blank=False, null=False)
-    aluno = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=False)
+    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE, blank=False, null=False)
     status = models.SmallIntegerField(choices=STATUS_CHOICES, blank=True, null=True)
 
 
@@ -181,3 +206,4 @@ class SubmissaoResponse(DashboardBaseModel):
     #
     # def get_absolute_url(self):
     #     return reverse('link-order-wallet-detail', kwargs={'pk': self.pk})
+

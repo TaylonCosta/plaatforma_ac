@@ -1,7 +1,7 @@
 from dal import autocomplete, forward
 from django import forms
 
-from registros.models import Categoria, Atividade, NivelParticipacao, Certificado, Submicao, SubmissaoResponse
+from registros.models import Categoria, Atividade, NivelParticipacao, Certificado, Submicao, SubmissaoResponse, Aluno
 
 
 class CategoriaForm(forms.ModelForm):
@@ -52,7 +52,7 @@ class CertificadoForm(forms.ModelForm):
     class Meta:
         model = Certificado
         fields = '__all__'
-        exclude = ('created_by', 'created_on', 'modified_by', 'modified_on', 'usuario', 'horas_convertidas',)
+        exclude = ('created_by', 'created_on', 'modified_by', 'modified_on', 'aluno', 'horas_convertidas',)
         widgets = {
             'atividade': autocomplete.ModelSelect2(attrs={"onchange": 'autoFillAtividadeByCertificado()',
                                                       "data-placeholder": 'Selecione Primeiro a Categoria'},
@@ -78,3 +78,9 @@ class SubmissaoResponseForm(forms.ModelForm):
         fields = '__all__'
         exclude = ('created_by', 'created_on', 'modified_by', 'modified_on', 'submicao', 'certificado')
 
+class AlunoForm(forms.ModelForm):
+
+    class Meta:
+        model = Aluno
+        fields = '__all__'
+        exclude = ('created_by', 'created_on', 'modified_by', 'modified_on', 'aluno')

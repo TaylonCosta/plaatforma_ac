@@ -1,7 +1,7 @@
 import django_filters
 from dal import autocomplete
 
-from registros.models import Categoria, Atividade, Certificado, Submicao, SubmissaoResponse
+from registros.models import Categoria, Atividade, Certificado, Submicao, SubmissaoResponse, Aluno
 
 
 class CategoriaFilter(django_filters.FilterSet):
@@ -33,7 +33,7 @@ class SubmicaoFilter(django_filters.FilterSet):
     class Meta:
         model = Submicao
         fields = {
-            'aluno__first_name': ['icontains'],
+            'aluno__user__first_name': ['icontains'],
         }
 
 class SubmissaoResponseFilter(django_filters.FilterSet):
@@ -42,4 +42,12 @@ class SubmissaoResponseFilter(django_filters.FilterSet):
         model = SubmissaoResponse
         fields = {
             'is_ok': ['icontains'],
+        }
+
+class AlunoFilter(django_filters.FilterSet):
+
+    class Meta:
+        model = Aluno
+        fields = {
+            'user__first_name': ['icontains'],
         }

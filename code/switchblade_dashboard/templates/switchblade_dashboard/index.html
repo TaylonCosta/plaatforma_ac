@@ -7,19 +7,30 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet"/>
 
-{%if user.roles == 'Aluno' or user.is_admin%}
 
-
+{%if aluno or user.is_admin%}
 <div class="box">
     <div class="box-body">
-        <h3>Bem vindo {{user.fisrt_name}} {{user.last_name}}!</h3>
-
-        <h4>Atualmente você posui {{n}} atividades complementares cadastradas, totalizando {{horas}} horas convertidas!</h4>
+        <h3>Bem vindo {{user.fisrt_name}}!</h3>
+    </div>
+</div>
+<div class="box">
+    <div class="box-title">
+        <h3> Passo a Passo para verificação de assinatura</h3>
+    </div>
+    <div class="box-body">
+        <h4><b>1) Gerar Certificado Digital</b></h4>
+        Acesse o portal da RNP <a href=" https://pessoal.icpedu.rnp.br" target="_blank">clicando aqui</a>, emita e baixe seu Certificado Digital;
+        <h4><b>2) Assinar digitalmente os certificados: </b></h4>
+        <a href="https://assinador.iti.br/assinatura/index.xhtml" target="_blank">Clique aqui para assinar</a>!
+        <h4><b>3) Depois de fazer o upload do documento para fazer a assinatura digital , TEM QUE CLICAR , em alguma parte do documento.</b></h4>
+        <h4><b>4) Para verificar se a assinatura tá ok , fazer o upload do arquivo aqui :</b></h4>
+        <a href="https://assina.ufsc.br/verificador/" target="_blank">Clique aqui para acessar o verificador</a>
     </div>
 </div>
 
-{%endif%}
-{%if user.roles == 'Secretaria' or user.is_admin%}
+
+{%else%}
 
     <div class="box">
         <div class="box-body">

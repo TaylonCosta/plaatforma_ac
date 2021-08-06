@@ -45,14 +45,9 @@
             {% with request.resolver_match.url_name as url_name %}
                 <header class="main-header">
                     <a href="/" class="logo">
-                    <span class="logo-mini">
-                        <img src="{% static 'img/mini_logo.png' %} " width="40" alt="{{ SystemLongName }}"
-                             title="{{ SystemLongName }}"/>
-                    </span>
-                        <span class="logo-lg">
-                        <img src="{% static 'img/default_logo.png' %}" width="140" alt="{{ SystemLongName }}"
-                             title="{{ SystemLongName }}"/>
-                    </span>
+                    <span title="{{ SystemLongName }}"/>
+
+                        <span title="{{ SystemLongName }}"/>
                     </a>
                     <nav class="navbar navbar-static-top" role="navigation">
                         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">

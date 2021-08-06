@@ -3,7 +3,7 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 
 from registros.autocomplete import CategoriaAutocomplete, AtividadeAutocomplete, CertificadoAutocomplete, \
-    NivelParticipacaoAutocomplete
+    NivelParticipacaoAutocomplete, AlunoAutocomplete
 from registros.models import NivelParticipacao
 from registros.views import CategoriaList, CategoriaCreate, CategoriaDetail, CategoriaUpdate, CategoriaDelete, \
     AtividadeList, AtividadeCreate, AtividadeDetail, AtividadeUpdate, AtividadeDelete, CertificadoList, \
@@ -11,7 +11,8 @@ from registros.views import CategoriaList, CategoriaCreate, CategoriaDetail, Cat
     SubmicaoCreate, RegistraSubmissao, Timeline, SubmissaoResponseList, \
     SubmissaoResponseCreate, SubmissaoResponseDetail, SubmissaoResponseUpdate, SubmissaoResponseDelete, \
     AnalisarSubmissao, VizualizarErros, SubmicaoAlunoList, SubmicaoAlunoDetail, SubmicaoAlunoUpdate, \
-    SubmicaoAlunoDelete, SubmissaoSecretariaList
+    SubmicaoAlunoDelete, SubmissaoSecretariaList, AlunoList, AlunoCreate, AlunoDetail, AlunoUpdate, AlunoDelete, \
+    OpenFile
 from switchblade_dashboard.decorators import register_resource
 from switchblade_dashboard.views import DashboardIndexView
 
@@ -41,7 +42,15 @@ urlpatterns = [
             path('nivel_pacriticipacao_autocomplete/', login_required(NivelParticipacaoAutocomplete.as_view()), name='participacao-autocomplete')
         ])),
 
-        path('submicao-aluno/', include([
+    ])),
+
+
+    path('submissao/', include([
+        path('', register_resource(
+            DashboardIndexView.as_view(page_title='Submissão', header='Submissão', columns=[3, 3, 3, 3])),
+             name='submissao-dashboard'),
+
+        path('submissao-aluno/', include([
             path('', register_resource(SubmicaoAlunoList), name='submicao-aluno-list'),
             path('cadastro/', register_resource(SubmicaoCreate), name='submicao-aluno-create'),
             path('detalhe/<int:pk>', register_resource(SubmicaoAlunoDetail), name='submicao-aluno-detail'),
@@ -68,9 +77,17 @@ urlpatterns = [
             # path('autocomplete/', login_required(SubmissaoResponseAutocomplete.as_view()), name='submissao-response-autocomplete'),
         ])),
 
-
-
     ])),
+
+        path('aluno/', include([
+            path('', register_resource(AlunoList), name='aluno-list'),
+            path('cadastro/', register_resource(AlunoCreate), name='aluno-create'),
+            path('detalhe/<int:pk>', register_resource(AlunoDetail), name='aluno-detail'),
+            path('edicao/<int:pk>', register_resource(AlunoUpdate), name='aluno-update'),
+            path('remocao/<int:pk>', register_resource(AlunoDelete), name='aluno-delete'),
+            path('autocomplete/', login_required(AlunoAutocomplete.as_view()), name='aluno-autocomplete'),
+        ])),
+
 
     path('certificados/', include([
         path('', register_resource(
@@ -85,8 +102,7 @@ urlpatterns = [
             path('remocao/<int:pk>', register_resource(CertificadoDelete), name='certificado-delete'),
             path('autocomplete/', login_required(CertificadoAutocomplete.as_view()), name='certificado-autocomplete'),
             path('auto_fill_atividade/',login_required(AtividadeByCertificado), name='autoFillAtividade'),
+            path('vizualizar-documento/<int:pk>', login_required(OpenFile), name='vizualiza-certificado')
         ])),
-
-
     ])),
 ]

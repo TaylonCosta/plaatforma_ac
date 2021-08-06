@@ -33,6 +33,7 @@
                                             <th>Nível de Participação</th>
                                             <th>Toltal de Horas</th>
                                             <th>Horas Convertidas</th>
+                                            <th>PDF</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -46,6 +47,7 @@
                                                 <td>{{c.nivel_participacao}}</td>
                                                 <td>{{c.total_de_horas}}</td>
                                                 <td>{{c.horas_convertidas}}</td>
+                                                <td><a href="{% url 'vizualiza-certificado' c.pk %}" target="_blank">Ver</a> </td>
                                             </tr>
                                         {%endfor%}
                                         </tbody>

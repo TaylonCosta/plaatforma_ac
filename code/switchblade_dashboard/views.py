@@ -31,7 +31,7 @@ from menu import Menu
 
 from menu.templatetags.menu import MenuNode
 # from silk.profiling.profiler import silk_profile
-from registros.models import Certificado
+from registros.models import Certificado, Aluno
 from switchblade_users.models import User
 from .filters import AuditLogFilter
 from .forms import FormSetHelper, FieldsColumnsFormSetHelper, DashboardFilterHelper, DashboardExtraCommandsHelper
@@ -172,24 +172,20 @@ class DashboardIndexView(DashboardBaseView):
 def Index(request):
     template_name = 'switchblade_dashboard/index.html'
     context = {}
-    user_aluno = User.objects.filter(id=request.user.id, roles__id=1).first()
-    user_secretaria = User.objects.filter(id=request.user.id, roles__id=2).first()
 
+    aluno = Aluno.objects.filter(user=request.user)
 
-    if user_aluno or request.user.is_admin:
+    if aluno or request.user.is_admin:
         h = 0
-        certificado = Certificado.objects.filter(usuario=user_aluno)
+        certificado = Certificado.objects.filter(aluno=aluno)
 
-        for c in certificado:
-            h += c.horas_convertidas
 
         context = {
+            'aluno' : aluno,
             'user' : request.user,
-            'horas' : h,
-            'n' : len(certificado)
         }
 
-    elif user_secretaria or request.user.is_admin:
+    else:
         context = {
             'a' : "aaaa",
         }
