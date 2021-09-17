@@ -7,51 +7,108 @@
 
 <link href="{% static 'registros/css/timeline.css' %}" rel="stylesheet">
 
-<div class="timeline">
+<div class="timeline_custom">
   {% if sub.status <= 1 %}
-  <div class="container left">
-    <div class="date">15 Dec</div>
-    <i class="icon fa fa-home"></i>
-    <div class="content">
+  <div class="container_custom left_custom">
+    <div class="date_custom">{{submetido_data}}</div>
+    <i class="icon_custom fa fa-check"></i>
+    <div class="content_custom">
       <h2>Submetido</h2>
       <p>
-        Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
+        Sua requisição foi submetida! Logo a secretaria fará a análise.
       </p>
     </div>
   </div>
   {%endif%}
     {% if sub.status == 2 %}
-  <div class="container right">
-    <div class="date">22 Oct</div>
-    <i class="icon fa fa-gift"></i>
-    <div class="content">
+
+    <div class="container_custom left_custom">
+    <div class="date_custom">{{submetido_data}}</div>
+    <i class="icon_custom fa fa-circle-o-notch"></i>
+    <div class="content_custom">
+      <h2>Submetido</h2>
+      <p>
+        Sua requisição foi submetida! Logo a secretaria fará a análise.
+      </p>
+    </div>
+  </div>
+
+  <div class="container_custom right_custom">
+    <div class="date_custom">{{em_analise_data}}</div>
+    <i class="icon_custom fa fa-circle-o-notch "></i>
+    <div class="content_custom">
       <h2>Em Analise</h2>
       <p>
-        Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
+        A secretaria iniciou o processo de análise da sua requisição, logo você terá o resultado.
       </p>
     </div>
   </div>
   {%endif%}
   {% if sub.status == 3 %}
-  <div class="container right">
-    <div class="date">10 Jul</div>
-    <i class="icon fa fa-user"></i>
-    <div class="content">
+
+      <div class="container_custom left_custom">
+    <div class="date_custom">{{submetido_data}}</div>
+    <i class="icon_custom fa fa-check"></i>
+    <div class="content_custom">
+      <h2>Submetido</h2>
+      <p>
+        Sua requisição foi submetida! Logo a secretaria fará a análise.
+      </p>
+    </div>
+  </div>
+
+  <div class="container_custom right_custom">
+    <div class="date_custom">{{em_analise_data}}</div>
+    <i class="icon_custom fa fa-circle-o-notch"></i>
+    <div class="content_custom">
+      <h2>Em Analise</h2>
+      <p>
+        A secretaria iniciou o processo de análise da sua requisição, logo você terá o resultado.
+      </p>
+    </div>
+  </div>
+
+  <div class="container_custom right_custom">
+    <div class="date_custom">{{final}}</div>
+    <i class="icon_custom fa fa-check-circle"></i>
+    <div class="content_custom">
       <h2>Aprovado</h2>
       <p>
-        Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
+        A secretaria aprovou sua requisição! Em breve as horas das suas AC's serão registradas no e-campus.
       </p>
     </div>
   </div>
   {%endif%}
   {% if sub.status == 4 %}
-  <div class="container right">
-    <div class="date">18 May</div>
-    <i class="icon fa fa-running"></i>
-    <div class="content">
+  <div class="container_custom left_custom">
+    <div class="date_custom">{{submetido_data}}</div>
+    <i class="icon_custom fa fa-check"></i>
+    <div class="content_custom">
+      <h2>Submetido</h2>
+      <p>
+        Sua requisição foi submetida! Logo a secretaria fará a análise.
+      </p>
+    </div>
+  </div>
+
+  <div class="container_custom right_custom">
+    <div class="date_custom">{{em_analise_data}}</div>
+    <i class="icon_custom fa fa-circle-o-notch"></i>
+    <div class="content_custom">
+      <h2>Em Analise</h2>
+      <p>
+        A secretaria iniciou o processo de análise da sua requisição, logo você terá o resultado.
+      </p>
+    </div>
+  </div>
+
+  <div class="container_custom right_custom">
+    <div class="date_custom">{{final}}</div>
+    <i class="icon_custom fa fa-close"></i>
+    <div class="content_custom">
       <h2>Reprovado</h2>
       <p>
-        <a href="{%url 'vizualizar-erros' sub.pk%}">Clique Aqui</a> para vizualizar quais certificados foram indeferidos
+        <a href="{%url 'vizualizar-erros' sub.pk%}">Clique Aqui</a> para vizualizar quais certificados foram indeferidos.
       </p>
     </div>
   </div>

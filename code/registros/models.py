@@ -176,7 +176,7 @@ class Submicao(DashboardBaseModel):
         (APROVADO, 'Aprovado'),
         (REPROVADO, 'Reprovado'),
     )
-
+    
     certificados = models.ManyToManyField(Certificado, blank=False, null=False)
     aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE, blank=False, null=False)
     status = models.SmallIntegerField(choices=STATUS_CHOICES, blank=True, null=True)

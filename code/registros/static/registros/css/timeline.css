@@ -1,16 +1,16 @@
-*,
-*::before,
-*::after {
+*_custom,
+*_custom::before,
+*_custom::after {
   box-sizing: border-box;
 }
 
-body {
+body_custom {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   background: #ffffff;
 }
 
-.timeline {
+.timeline_custom {
   position: relative;
   width: 100%;
   max-width: 1140px;
@@ -18,33 +18,33 @@ body {
   padding: 15px 0;
 }
 
-.timeline::after {
+.timeline_custom::after {
   content: '';
   position: absolute;
   width: 2px;
-  background: #006E51;
+  background: #0065A2 ;
   top: 0;
   bottom: 0;
   left: 50%;
   margin-left: -1px;
 }
 
-.container {
+.container_custom {
   padding: 15px 30px;
   position: relative;
   background: inherit;
   width: 50%;
 }
 
-.container.left {
+.container_custom.left_custom {
   left: 0;
 }
 
-.container.right {
+.container_custom.right_custom {
   left: 50%;
 }
 
-.container::after {
+.container_custom::after {
   content: '';
   position: absolute;
   width: 16px;
@@ -52,95 +52,95 @@ body {
   top: calc(50% - 8px);
   right: -8px;
   background: #ffffff;
-  border: 2px solid #006E51;
+  border: 2px solid #0065A2;
   border-radius: 16px;
   z-index: 1;
 }
 
-.container.right::after {
+.container_custom.right_custom::after {
   left: -8px;
 }
 
-.container::before {
+.container_custom::before {
   content: '';
   position: absolute;
   width: 50px;
   height: 2px;
   top: calc(50% - 1px);
   right: 8px;
-  background: #006E51;
+  background: #0065A2;
   z-index: 1;
 }
 
-.container.right::before {
+.container_custom.right_custom::before {
   left: 8px;
 }
 
-.container .date {
+.container_custom .date_custom {
   position: absolute;
   display: inline-block;
   top: calc(50% - 8px);
   text-align: center;
   font-size: 14px;
   font-weight: bold;
-  color: #006E51;
+  color: #0065A2;
   text-transform: uppercase;
   letter-spacing: 1px;
   z-index: 1;
 }
 
-.container.left .date {
+.container_custom.left_custom .date_custom {
   right: -75px;
 }
 
-.container.right .date {
+.container_custom.right_custom .date_custom {
   left: -75px;
 }
 
-.container .icon {
+.container_custom .icon_custom {
   position: absolute;
   display: inline-block;
   width: 40px;
   height: 40px;
   padding: 9px 0;
   top: calc(50% - 20px);
-  background: #F6D155;
-  border: 2px solid #006E51;
+  background: #A3D963;
+  border: 2px solid #0065A2;
   border-radius: 40px;
   text-align: center;
   font-size: 18px;
-  color: #006E51;
+  color: #0065A2;
   z-index: 1;
 }
 
-.container.left .icon {
+.container_custom.left_custom .icon_custom {
   right: 56px;
 }
 
-.container.right .icon {
+.container_custom.right_custom .icon_custom {
   left: 56px;
 }
 
-.container .content {
+.container_custom .content_custom {
   padding: 30px 90px 30px 30px;
-  background: #00000;
+  background: #A3D963;
   position: relative;
   border-radius: 0 500px 500px 0;
 }
 
-.container.right .content {
+.container_custom.right_custom .content_custom {
   padding: 30px 30px 30px 90px;
   border-radius: 500px 0 0 500px;
 }
 
-.container .content h2 {
+.container_custom .content_custom h2 {
   margin: 0 0 10px 0;
   font-size: 18px;
   font-weight: normal;
-  color: #006E51;
+  color: #0065A2;
 }
 
-.container .content p {
+.container_custom .content_custom p {
   margin: 0;
   font-size: 16px;
   line-height: 22px;
@@ -148,45 +148,45 @@ body {
 }
 
 @media (max-width: 767.98px) {
-  .timeline::after {
+  .timeline_custom::after {
     left: 90px;
   }
 
-  .container {
+  .container_custom {
     width: 100%;
     padding-left: 120px;
     padding-right: 30px;
   }
 
-  .container.right {
+  .container_custom.right_custom {
     left: 0%;
   }
 
-  .container.left::after,
-  .container.right::after {
-    left: 182px;
+  .container_custom.left_custom::after,
+  .container_custom.right::after {
+    left: 82px;
   }
 
-  .container.left::before,
-  .container.right::before {
-    left: 1000px;
+  .container_custom.left_custom::before,
+  .container_custom.right::before {
+    left: 100px;
     border-color: transparent #006E51 transparent transparent;
   }
 
-  .container.left .date,
-  .container.right .date {
+  .container._customleft_custom .date_custom,
+  .container_custom.right .date {
     right: auto;
     left: 15px;
   }
 
-  .container.left .icon,
-  .container.right .icon {
+  .container_custom.left_custom .icon_custom,
+  .container_custom.right .icon {
     right: auto;
     left: 146px;
   }
 
-  .container.left .content,
-  .container.right .content {
+  .container_custom.left_custom .content_custom,
+  .container_custom.right .content {
     padding: 30px 30px 30px 90px;
     border-radius: 500px 0 0 500px;
   }

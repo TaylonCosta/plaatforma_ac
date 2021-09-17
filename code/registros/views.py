@@ -27,6 +27,7 @@ class CategoriaList(DashboardListView):
     page_title = 'Categoria'
     header = 'Categoria'
 
+    show_export_button = False
     add_button_title = 'Cadastrar Categoria'
     add_button_url = reverse_lazy('categoria-create')
 
@@ -104,6 +105,7 @@ class AtividadeList(DashboardListView):
     page_title = 'Atividade'
     header = 'Atividade'
 
+    show_export_button = False
     add_button_title = 'Cadastrar Atividade'
     add_button_url = reverse_lazy('atividade-create')
 
@@ -192,6 +194,7 @@ class CertificadoList(DashboardListView):
     page_title = 'Certificado'
     header = 'Certificado'
 
+    show_export_button = False
     add_button_title = 'Cadastrar Certificado'
     add_button_url = reverse_lazy('certificado-create')
 
@@ -316,6 +319,7 @@ class SubmicaoAlunoList(DashboardListView):
     page_title = 'Submicao'
     header = 'Submicao'
 
+    show_export_button = False
     add_button_title = 'Cadastrar Submicao'
     add_button_url = reverse_lazy('submicao-aluno-create')
 
@@ -429,8 +433,20 @@ def Timeline(request, pk):
     template_name = 'registros/timeline.html'
     submicao = Submicao.objects.get(pk=int(pk))
 
+    i = submicao.created_on.strftime('%d %b')
+    m = submicao.modified_on.strftime('%d %b')
+    f = None
+    resp = SubmissaoResponse.objects.filter(submissao=submicao)
+
+    if resp:
+        f = resp[0].created_on.strftime('%d %b')
+
+
     context = {
-        'sub' : submicao
+        'sub' : submicao,
+        'submetido_data': i,
+        'em_analise_data' : m,
+        'final' : f
     }
 
     return render(request, template_name, context)
@@ -440,6 +456,7 @@ class SubmissaoResponseList(DashboardListView):
     page_title = 'Resposta da Submissão'
     header = 'Resposta da Submissão'
 
+    show_export_button = False
     add_button_title = 'Cadastrar Resposta da Submissao'
     add_button_url = reverse_lazy('submissao-response-create')
 
@@ -520,7 +537,8 @@ def AnalisarSubmissao(request, pk):
 
         deferido = request.POST.getlist('deferido')
         indeferido = request.POST.getlist('indeferido')
-
+        observacao = request.POST.getlist('obs')
+        i = 0
 
         for elemento in deferido:
             novo_deferido = None
@@ -528,11 +546,13 @@ def AnalisarSubmissao(request, pk):
             novo_deferido.submissao = submissao
             novo_deferido.certificado = Certificado.objects.get(pk=int(elemento))
             novo_deferido.is_ok = True
+            novo_deferido.observacao = '-'
             novo_deferido.created_by = request.user
             novo_deferido.modified_by = request.user
             novo_deferido.created_on = dt.datetime.now()
             novo_deferido.modified_on = dt.datetime.now()
             novo_deferido.save()
+            i += 1
 
         for elemento in indeferido:
             novo_indeferido = None
@@ -540,11 +560,13 @@ def AnalisarSubmissao(request, pk):
             novo_indeferido.submissao = submissao
             novo_indeferido.certificado = Certificado.objects.get(pk=int(elemento))
             novo_indeferido.is_ok = False
+            novo_indeferido.observacao = observacao[i]
             novo_indeferido.created_by = request.user
             novo_indeferido.modified_by = request.user
             novo_indeferido.created_on = dt.datetime.now()
             novo_indeferido.modified_on = dt.datetime.now()
             novo_indeferido.save()
+            i += 1
 
         if len(indeferido) >= 1:
             submissao.status = 4
@@ -581,6 +603,7 @@ class SubmissaoSecretariaList(DashboardListView):
     page_title = 'Submissao Secretaria'
     header = 'Submissao Secretaria'
 
+    show_export_button = False
     add_button_title = 'Cadastrar Submissao'
     add_button_url = reverse_lazy('submissão-create')
 
@@ -597,6 +620,7 @@ class AlunoList(DashboardListView):
     page_title = 'Aluno'
     header = 'Aluno'
 
+    show_export_button = False
     add_button_title = 'Cadastrar Aluno'
     add_button_url = reverse_lazy('aluno-create')
 

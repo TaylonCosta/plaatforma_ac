@@ -34,6 +34,7 @@
                                             <th>Toltal de Horas</th>
                                             <th>Horas Convertidas</th>
                                             <th>PDF</th>
+                                            <th>Observação</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -48,6 +49,7 @@
                                                 <td>{{c.total_de_horas}}</td>
                                                 <td>{{c.horas_convertidas}}</td>
                                                 <td><a href="{% url 'vizualiza-certificado' c.pk %}" target="_blank">Ver</a> </td>
+                                                <td><input type="text" id="obs" name="obs"></td>
                                             </tr>
                                         {%endfor%}
                                         </tbody>
